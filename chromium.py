@@ -34,7 +34,7 @@ options.add_experimental_option("prefs", { \
   })
 
 browser = webdriver.Chrome(options=options)
-
+logged_in=False
 
 
 @run_async
@@ -240,6 +240,7 @@ def meet(update,context):
 
 		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
 		context.bot.send_message(chat_id=update.message.chat_id, text="Attending you lecture. You can chill")
+		logged_in=True
 		context.bot.send_message(chat_id=update.message.chat_id,text="To exit click /exitmeet ")
 		pause
 		logging.info("STAAAAPH!!")
@@ -248,20 +249,24 @@ def meet(update,context):
 		context.bot.send_message(chat_id=update.message.chat_id, text="Some error occurred retry!")
 
 def exitmeet(update,context):
-	try:
-		logging.info("exiting meet!!!")
+	if logged_in:
+		try:
+			logging.info("exiting meet!!!")
+			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+			context.bot.send_message(chat_id=update.message.chat_id, text="Exiting your meeting.It takes 1 minute time.")
+			browser.quit()
+			time.sleep(60)
+			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+			context.bot.send_message(chat_id=update.message.chat_id, text="Exited your meeting.")
+			time.sleep(2)
+			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+			context.bot.send_message(chat_id=update.message.chat_id, text="To attend another meeting please /restart.")
+		except:
+			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+			context.bot.send_message(chat_id=update.message.chat_id, text="Some error occured!!!retry again.")
+	else:
 		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
-		context.bot.send_message(chat_id=update.message.chat_id, text="Exiting your meeting.It takes 1 minute time.")
-		browser.quit()
-		time.sleep(60)
-		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
-		context.bot.send_message(chat_id=update.message.chat_id, text="Exited your meeting.")
-		time.sleep(2)
-		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
-		context.bot.send_message(chat_id=update.message.chat_id, text="To attend another meeting please /restart.")
-	except:
-		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
-		context.bot.send_message(chat_id=update.message.chat_id, text="Some error occured!!!retry again.")
+		context.bot.send_message(chat_id=update.message.chat_id, text="No meeting is running to exit.")
 def start(update,context):
 	context.bot.send_message(chat_id=update.message.chat_id,text="Use following Commands to interact with bot :\nTo join google meet - /meet Gmeetlink\n To join zoom meeting - /zoom meetingid password\nTo know Status of Bot - /status\nTo exit Gmeet - /exitmeet\nTo restart Bot🤖 - /restart")
 	
