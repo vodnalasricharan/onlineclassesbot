@@ -36,7 +36,7 @@ Online Classes Bot is a telegram bot which can be deployed to a server, heroku o
 	
  1. Download and Install Google Chrome and Chromedriver.
  2. `git clone https://github.com/vodnalasricharan/onlineclassesbot`
- 3. `cd YeetMeet`
+ 3. `cd onlineclassesbot`
  4. `pip install -r requirements.txt`
  5. `python chromium.py` 
 
@@ -59,7 +59,7 @@ Online Classes Bot is a telegram bot which can be deployed to a server, heroku o
 
 1. Download and Install Google Chrome and Chromedriver.
  2. `git clone https://github.com/vodnalasricharan/onlineclassesbot`
- 3. `cd YeetMeet`
+ 3. `cd onlineclassesbot`
  4. `pip install -r requirements.txt`
  5. `python chromium.py`
  6. Login to your Google Account.
