@@ -48,7 +48,7 @@ Online Classes Bot is a telegram bot which can be deployed to a server, heroku o
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vodnalasricharan/onlineclassesbot)
 
->Note: Add app url in main() function in chromium.py as mentioned in file
+>Note: Add app url in `updater.bot.setWebhook('heroku app link' + str(Config.BOT_TOKEN)`in main() function in chromium.py as mentioned in file
 
 **Conventional Deploy**
 
