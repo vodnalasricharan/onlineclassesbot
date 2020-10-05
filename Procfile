@@ -1,1 +1,1 @@
-worker: python3 chromium.py
+web: python3 chromium.py

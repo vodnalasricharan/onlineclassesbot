@@ -42,10 +42,11 @@ def restart(update, context):
     restart_message = context.bot.send_message(chat_id=update.message.chat_id, text="Restarting, Please wait!")
     # Save restart message object in order to reply to it after restarting
     browser.quit()
+    context.bot.send_message(chat_id=update.message.chat_id,text="Restarted Your Bot👍.")
     with open('restart.pickle', 'wb') as status:
         pickle.dump(restart_message, status)
     execl(executable, executable, "chromium.py")
-
+    
 def status(update, context):
 	browser.save_screenshot("ss.png")
 	context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.UPLOAD_PHOTO)
@@ -130,7 +131,8 @@ def zoom(update, context):
 		os.remove('ss.png')
 
 		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
-		context.bot.send_message(chat_id=update.message.chat_id, text="Attending you lecture. You can chill :v")
+		context.bot.send_message(chat_id=update.message.chat_id, text="Attending you lecture. You can chill ")
+		context.bot.send_message(chat_id=update.message.chat_id,text="To exit click /exitmeet ")
 		pause
 		logging.info("STAAAAPH!!")
 
@@ -198,6 +200,19 @@ def meet(update,context):
 		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.UPLOAD_PHOTO)
 		mid  = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'), caption="Test", timeout = 120).message_id
 		os.remove('ss.png')
+		try:
+			browser.find_elements_by_xpath('//*[@id="yDmH0d"]/c-wiz/div/div/div[5]/div[3]/div/div/div[2]/div/div/div[1]/div/div[4]/div[2]/div/div/span/span/div').click()
+			time.sleep(2)
+			try:
+				browser.find_elements_by_xpath('//*[@id="yDmH0d"]/c-wiz/div/div/div[5]/div[3]/div/div/div[2]/div/div/div[1]/div/div[4]/div[1]/div/div/div/span/span/div/div[1]/div').click()
+				time.sleep(2)
+			except:
+				context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+				context.bot.send_message(chat_id=update.message.chat_id, text="Cannot off your microphone")
+		except:
+			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+			context.bot.send_message(chat_id=update.message.chat_id, text="cannot off your video")
+			
 
 		if(browser.find_elements_by_xpath('//*[@id="yDmH0d"]/div[3]/div/div[2]/div[3]/div')):
 			browser.find_element_by_xpath('//*[@id="yDmH0d"]/div[3]/div/div[2]/div[3]/div').click()
@@ -217,37 +232,55 @@ def meet(update,context):
 			time.sleep(10)
 
 		context.bot.delete_message(chat_id=update.message.chat_id ,message_id = mid)
-
-		browser.save_screenshot("ss.png")
-		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.UPLOAD_PHOTO)
-		mid = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'), timeout = 120).message_id
-		os.remove('ss.png')
 		time.sleep(5)
-
-		context.bot.delete_message(chat_id=update.message.chat_id ,message_id = mid)
-		time.sleep(10)
-
 		browser.save_screenshot("ss.png")
 		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.UPLOAD_PHOTO)
 		mid = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'), timeout = 120).message_id
 		os.remove('ss.png')
 
 		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
-		context.bot.send_message(chat_id=update.message.chat_id, text="Attending you lecture. You can chill :v")
+		context.bot.send_message(chat_id=update.message.chat_id, text="Attending you lecture. You can chill")
+		context.bot.send_message(chat_id=update.message.chat_id,text="To exit click /exitmeet ")
 		pause
 		logging.info("STAAAAPH!!")
 	except:
 		browser.quit()
 		context.bot.send_message(chat_id=update.message.chat_id, text="Some error occurred retry!")
 
+def exitmeet(update,context):
+	try:
+		logging.info("exiting meet!!!")
+		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+		context.bot.send_message(chat_id=update.message.chat_id, text="Exiting your meeting.It takes 1 minute time.")
+		browser.quit()
+		time.sleep(60)
+		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+		context.bot.send_message(chat_id=update.message.chat_id, text="Exited your meeting.")
+		time.sleep(2)
+		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+		context.bot.send_message(chat_id=update.message.chat_id, text="To attend another meeting please /restart.")
+	except:
+		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+		context.bot.send_message(chat_id=update.message.chat_id, text="Some error occured!!!retry again.")
+def start(update,context):
+	context.bot.send_message(chat_id=update.message.chat_id,text="Use following Commands to interact with bot :\nTo join google meet - /meet Gmeetlink\n To join zoom meeting - /zoom zoommeetinglink\nTo know Status of Bot - /status\nTo exit Gmeet - /exitmeet\nTo restart Bot🤖 - /restart")
+	
 
 def main():
+	import os
+	PORT = int(os.environ.get('PORT', 8000))
+	dp.add_handler(CommandHandler("start",start))
 	dp.add_handler(CommandHandler("zoom", zoom))
 	dp.add_handler(CommandHandler("meet", meet))
 	dp.add_handler(CommandHandler("restart", restart))
 	dp.add_handler(CommandHandler("status", status))
+	dp.add_handler(CommandHandler("exitmeet", exitmeet))
 	logging.info("Bot started")
-	updater.start_polling()
+	updater.start_webhook(listen="0.0.0.0",
+                          port=int(PORT),
+                          url_path=str(Config.BOT_TOKEN))
+	updater.bot.setWebhook('https://charanclassesbot.herokuapp.com/' + str(Config.BOT_TOKEN))
+	# updater.start_polling()
 
 if __name__ == '__main__':
     main()

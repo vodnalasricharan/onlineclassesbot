@@ -5,15 +5,15 @@
   	"keywords": ["selenium", "chromedriver", "python"],
   	"env": {
     "BOT_TOKEN": {
-    	"description": "1314925010:AAFLf0g8QfGtw3-OCEVAYnv5p8rwFCvZznk"
+    	"description": "TELEGRAM_BOT_API_TOKEN"
     	},
 
     "PASSWORD": {
-      "description": "6303994496"
+      "description": "MAIL_PASSWORD"
     	},
 
     "USERNAME": {
-      "description": "charansrikar99@gmail.com"
+      "description": "MAIL_ID"
     	}
 
   	},
