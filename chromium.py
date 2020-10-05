@@ -276,11 +276,16 @@ def main():
 	dp.add_handler(CommandHandler("status", status))
 	dp.add_handler(CommandHandler("exitmeet", exitmeet))
 	logging.info("Bot started")
-	updater.start_webhook(listen="0.0.0.0",
-                          port=int(PORT),
-                          url_path=str(Config.BOT_TOKEN))
-	updater.bot.setWebhook('https://charanclassesbot.herokuapp.com/' + str(Config.BOT_TOKEN))
-	# updater.start_polling()
+	
+	#use below 2 lines to deploy in heroku
+# 	updater.start_webhook(listen="0.0.0.0",
+#                           port=int(PORT),
+#                           url_path=str(Config.BOT_TOKEN))
+# 	updater.bot.setWebhook('heroku app link' + str(Config.BOT_TOKEN))
+
+
+#	use below line while running in local machine
+	updater.start_polling()
 
 if __name__ == '__main__':
     main()
