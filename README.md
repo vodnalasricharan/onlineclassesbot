@@ -20,6 +20,9 @@ Online Classes Bot is a telegram bot which can be deployed to a server, heroku o
 	
     Get screenshot of the web page
     /status
+    
+    Exit the ongoing Googlemeeting
+    /exitmeet
 
     Close all the opened window and restarts the script
     /restart
