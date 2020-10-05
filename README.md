@@ -73,5 +73,5 @@ Online Classes Bot is a telegram bot which can be deployed to a server, heroku o
  14. Push Code to Heroku `git push heroku master`
  15. Scale the dynos `heroku ps:scale worker=1`
  
- ### Thanks Aditya for this Idea😊.
+ ### Thanks Aditya,for this Idea😊.
  >This Bot is inspired from : https://github.com/1337w0rm/YeetMeet/
