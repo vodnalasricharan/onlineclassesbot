@@ -1,7 +1,7 @@
 
-# YEET MEET
+# ONLINE CLASSES BOT
 
-YEET MEET is a telegram bot which can be deployed to a server, heroku or on your local machine. It can attend your Google Meet and Zoom classes for you.
+Online Classes Bot is a telegram bot which can be deployed to a server, heroku or on your local machine. It can attend your Google Meet and Zoom classes for you.
 
 ## Bot Commands
 
@@ -26,13 +26,13 @@ YEET MEET is a telegram bot which can be deployed to a server, heroku or on your
 
 ## Deploy to Local Machine and Server
 
-> Set ENVIRONMENT VARIABLES according to VARIABLES in [config.py](https://github.com/vodnalasricharan/charanclassesbot/blob/master/config.py)
+> Set ENVIRONMENT VARIABLES according to VARIABLES in [config.py](https://github.com/vodnalasricharan/onlineclassesbot/blob/master/config.py)
 
 
 
 	
  1. Download and Install Google Chrome and Chromedriver.
- 2. `git clone https://github.com/1337w0rm/YeetMeet`
+ 2. `git clone https://github.com/vodnalasricharan/onlineclassesbot`
  3. `cd YeetMeet`
  4. `pip install -r requirements.txt`
  5. `python chromium.py` 
@@ -43,20 +43,19 @@ YEET MEET is a telegram bot which can be deployed to a server, heroku or on your
 > Note: In one click deploy you will have to re-login every day.
 
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/1337w0rm/YeetMeet)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vodnalasricharan/onlineclassesbot)
 
 **Conventional Deploy**
 
 > Note: Login to your Google account from your local machine first, so that you don't have to re-login again and again on Heroku.
 
 
-> Set ENVIRONMENT VARIABLES according to VARIABLES in [config.py](https://github.com/1337w0rm/YeetMeet/blob/master/config.py)
- OR
-See [How to edit config.py](https://github.com/1337w0rm/YeetMeet/issues/3#issuecomment-694277739)
+> Set ENVIRONMENT VARIABLES according to VARIABLES in [config.py](https://github.com/vodnalasricharan/onlineclassesbot/blob/master/config.py)
+
 
 
 1. Download and Install Google Chrome and Chromedriver.
- 2. `git clone https://github.com/1337w0rm/YeetMeet`
+ 2. `git clone https://github.com/vodnalasricharan/onlineclassesbot`
  3. `cd YeetMeet`
  4. `pip install -r requirements.txt`
  5. `python chromium.py`
