@@ -285,7 +285,7 @@ def exitmeet(update,context):
 		context.bot.send_message(chat_id=update.message.chat_id, text="No meeting is running to exit.")
 
 def start(update,context):
-	context.bot.send_message(chat_id=update.message.chat_id,text="Use following Commands to interact with bot :\nTo join google meet - /meet Gmeetlink\n To join zoom meeting - /zoom zoommeetinglink\nTo know Status of Bot - /status\nTo exit Gmeet - /exitmeet\nTo restart Bot🤖 - /restart")
+	context.bot.send_message(chat_id=update.message.chat_id,text="Use following Commands to interact with bot :\nTo join google meet - /meet Gmeetlink\n To join zoom meeting - /zoom zoommeetingid password\nTo know Status of Bot - /status\nTo exit Gmeet - /exitmeet\nTo restart Bot🤖 - /restart")
 	
 
 def main():
