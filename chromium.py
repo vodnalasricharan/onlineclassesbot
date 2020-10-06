@@ -43,15 +43,23 @@ def restart(update, context):
     # Save restart message object in order to reply to it after restarting
     browser.quit()
     context.bot.send_message(chat_id=update.message.chat_id,text="Restarted Your Bot👍.")
+    logging.info("restarting bot!!")
     with open('restart.pickle', 'wb') as status:
         pickle.dump(restart_message, status)
     execl(executable, executable, "chromium.py")
     
 def status(update, context):
-	browser.save_screenshot("ss.png")
-	context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.UPLOAD_PHOTO)
-	mid = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'), timeout = 120).message_id
-	os.remove('ss.png')
+	try:
+		browser.save_screenshot("ss.png")
+		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.UPLOAD_PHOTO)
+		mid = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'), timeout = 120).message_id
+		os.remove('ss.png')
+		logging.info("*enquired status*")
+		time.sleep(5)
+		context.bot.delete_message(chat_id=update.message.chat_id ,message_id = mid)
+
+	except:
+		context.bot.send_message(chat_id=update.message.chat_id, text="please /restart your bot🤖 to get status")
 	
 def zoom(update, context):
 	logging.info("DOING")
@@ -139,10 +147,10 @@ def zoom(update, context):
 	
 	except:
 		browser.quit()
-		context.bot.send_message(chat_id=update.message.chat_id, text="Some error occurred retry!")
+		context.bot.send_message(chat_id=update.message.chat_id, text="Some error occurred retry!please /restart")
 
 def meet(update,context):
-	logging.info("DOING")
+	logging.info("logging in google account")
 	try:
 		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
 		usernameStr = Config.USERNAME
@@ -198,7 +206,7 @@ def meet(update,context):
 
 		browser.save_screenshot("ss.png")
 		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.UPLOAD_PHOTO)
-		mid  = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'), caption="Test", timeout = 120).message_id
+		mid  = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'), caption="joining", timeout = 120).message_id
 		os.remove('ss.png')
 		try:
 			browser.find_elements_by_xpath('//*[@id="yDmH0d"]/c-wiz/div/div/div[5]/div[3]/div/div/div[2]/div/div/div[1]/div/div[4]/div[2]/div/div/span/span/div').click()
@@ -240,15 +248,23 @@ def meet(update,context):
 
 		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
 		context.bot.send_message(chat_id=update.message.chat_id, text="Attending you lecture. You can chill")
+		global logged_in
 		logged_in=True
 		context.bot.send_message(chat_id=update.message.chat_id,text="To exit click /exitmeet ")
+		context.bot.send_message(chat_id=update.message.chat_id,text="Please send /status for every 30 minutes😊")
 		pause
-		logging.info("STAAAAPH!!")
+		logging.info("joined Gmeet")
+		time.sleep(3)
+		context.bot.delete_message(chat_id=update.message.chat_id,message_id=mid)
+
+		
 	except:
 		browser.quit()
-		context.bot.send_message(chat_id=update.message.chat_id, text="Some error occurred retry!")
+		context.bot.send_message(chat_id=update.message.chat_id, text="Some error occurred retry! please /restart")
+		logging.info("Cannot attend Gmeet")
 
 def exitmeet(update,context):
+	global logged_in
 	if logged_in:
 		try:
 			logging.info("exiting meet!!!")
@@ -267,8 +283,9 @@ def exitmeet(update,context):
 	else:
 		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
 		context.bot.send_message(chat_id=update.message.chat_id, text="No meeting is running to exit.")
+
 def start(update,context):
-	context.bot.send_message(chat_id=update.message.chat_id,text="Use following Commands to interact with bot :\nTo join google meet - /meet Gmeetlink\n To join zoom meeting - /zoom meetingid password\nTo know Status of Bot - /status\nTo exit Gmeet - /exitmeet\nTo restart Bot🤖 - /restart")
+	context.bot.send_message(chat_id=update.message.chat_id,text="Use following Commands to interact with bot :\nTo join google meet - /meet Gmeetlink\n To join zoom meeting - /zoom zoommeetinglink\nTo know Status of Bot - /status\nTo exit Gmeet - /exitmeet\nTo restart Bot🤖 - /restart")
 	
 
 def main():
