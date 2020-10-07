@@ -269,14 +269,19 @@ def exitmeet(update,context):
 		try:
 			logging.info("exiting meet!!!")
 			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
-			context.bot.send_message(chat_id=update.message.chat_id, text="Exiting your meeting.It takes 1 minute time.")
-			browser.quit()
-			time.sleep(60)
+			context.bot.send_message(chat_id=update.message.chat_id, text="Exiting your meeting!!")
+			browser.execute_script("window.open('');")
+			browser.close()
+			browser.switch_to.window(browser.window_handles[-1])
 			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
 			context.bot.send_message(chat_id=update.message.chat_id, text="Exited your meeting.")
-			time.sleep(2)
-			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
-			context.bot.send_message(chat_id=update.message.chat_id, text="To attend another meeting please /restart.")
+			browser.save_screenshot("ss.png")
+			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.UPLOAD_PHOTO)
+			mid = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'), timeout = 120).message_id
+			os.remove('ss.png')
+			time.sleep(10)
+			context.bot.delete_message(chat_id=update.message.chat_id ,message_id = mid)
+			
 		except:
 			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
 			context.bot.send_message(chat_id=update.message.chat_id, text="Some error occured!!!retry again.")
