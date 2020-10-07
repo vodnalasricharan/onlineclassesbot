@@ -6,6 +6,7 @@ Online Classes Bot is a telegram bot which can be deployed to a server, heroku o
 ## Bot Commands
 
     /meet - Command to join Google Meet classes or metting
+    /gchat - To send messages in Google meeting
     /zoom - Command to join Zoom Meeting
     /status - Sends screenshot of the web page
     /exitmeet - Exit Google meeting
@@ -14,6 +15,9 @@ Online Classes Bot is a telegram bot which can be deployed to a server, heroku o
 	
 	Join Google Meeting
     /meet https://meet.google.com/agr-ghts-ade
+    
+    send messages in Gmeet
+    /gchat yourmessage
     
     Join Zoom Meeting
     /zoom 12354674654 ax56rR
