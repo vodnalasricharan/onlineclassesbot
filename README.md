@@ -48,7 +48,6 @@ Online Classes Bot is a telegram bot which can be deployed to a server, heroku o
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vodnalasricharan/onlineclassesbot)
 
->Note: Add app url in `updater.bot.setWebhook('heroku app link' + str(Config.BOT_TOKEN)`in main() function in chromium.py as mentioned in file
 
 **Conventional Deploy**
 
@@ -65,22 +64,15 @@ Online Classes Bot is a telegram bot which can be deployed to a server, heroku o
  4. `pip install -r requirements.txt`
  5. `python chromium.py`
  6. Login to your Google Account.
- 7. Before deploying comment `updater.start_pooling()` in `main()` function in chromium.py
- 8. uncomment 
- 	`updater.start_webhook(listen="0.0.0.0",
-                           port=int(PORT),
-                           url_path=str(Config.BOT_TOKEN))`
- 	`updater.bot.setWebhook('heroku app link' + str(Config.BOT_TOKEN))`
->	note: add app link after deployement
- 9. Now through Heroku-CLI login to your Heroku account
- 10. Create a Heroku App `heroku create appname --buildpack heroku/python`
- 11. Set Chromedriver Builpack `heroku buildpacks:add https://github.com/heroku/heroku-buildpack-chromedriver -a appname`
- 12. Set Google Chrome buildpack `heroku buildpacks:add https://github.com/1337w0rm/heroku-buildpack-google-chrome -a appname`
- 13. Initialize git repository  `git init`
- 14. Select this app in your Heroku-CLI `heroku git:remote -a appname`
- 15. Commit the changes `git commit -am "Your commit message"`
- 16. Push Code to Heroku `git push heroku master`
- 17. Scale the dynos `heroku ps:scale worker=1`
+ 7. Now through Heroku-CLI login to your Heroku account
+ 8. Create a Heroku App `heroku create appname --buildpack heroku/python`
+ 9. Set Chromedriver Builpack `heroku buildpacks:add https://github.com/heroku/heroku-buildpack-chromedriver -a appname`
+ 10. Set Google Chrome buildpack `heroku buildpacks:add https://github.com/1337w0rm/heroku-buildpack-google-chrome -a appname`
+ 11. Initialize git repository  `git init`
+ 12. Select this app in your Heroku-CLI `heroku git:remote -a appname`
+ 13. Commit the changes `git commit -am "Your commit message"`
+ 14. Push Code to Heroku `git push heroku master`
+ 15. Scale the dynos `heroku ps:scale worker=1`
  
  ### Thanks Aditya,for this Idea😊.
  >This Bot is inspired from : https://github.com/1337w0rm/YeetMeet/
