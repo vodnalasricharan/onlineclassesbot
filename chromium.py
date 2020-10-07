@@ -292,35 +292,39 @@ def exitmeet(update,context):
 		context.bot.send_message(chat_id=update.message.chat_id, text="No meeting is running to exit.")
 def gchat(update,context):
 	msg=update.message.text.split()[-1]
-	global logged_in
-	if logged_in:
-		try:
-			ActionChains(browser).key_down(Keys.CONTROL).key_down(Keys.ALT).send_keys('c').key_up(Keys.ALT).key_up(Keys.CONTROL).perform()
-			time.sleep(2)
-			ActionChains(browser).send_keys(msg).perform()
-			time.sleep(2)
-			ActionChains(browser).send_keys(Keys.ENTER).perform()
-			time.sleep(2)
-			browser.save_screenshot("ss.png")
-			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.UPLOAD_PHOTO)
-			mid1 = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'),caption='message sent:'+str(msg), timeout = 120).message_id
-			os.remove('ss.png')
-			ActionChains(browser).send_keys(Keys.ESCAPE).perform()
-			time.sleep(2)
-			browser.save_screenshot("ss.png")
-			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.UPLOAD_PHOTO)
-			mid2 = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'), timeout = 120).message_id
-			os.remove('ss.png')
-			time.sleep(10)
-			context.bot.delete_message(chat_id=update.message.chat_id ,message_id = mid1)
-			context.bot.delete_message(chat_id=update.message.chat_id ,message_id = mid2)
-		except:
-			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
-			context.bot.send_message(chat_id=update.message.chat_id, text="cannot send message.")
+	if msg != '/gchat':
+		global logged_in
+		if logged_in:
+			try:
+				ActionChains(browser).key_down(Keys.CONTROL).key_down(Keys.ALT).send_keys('c').key_up(Keys.ALT).key_up(Keys.CONTROL).perform()
+				time.sleep(2)
+				ActionChains(browser).send_keys(msg).perform()
+				time.sleep(2)
+				ActionChains(browser).send_keys(Keys.ENTER).perform()
+				time.sleep(2)
+				browser.save_screenshot("ss.png")
+				context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.UPLOAD_PHOTO)
+				mid1 = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'),caption='message sent:'+str(msg), timeout = 120).message_id
+				os.remove('ss.png')
+				ActionChains(browser).send_keys(Keys.ESCAPE).perform()
+				time.sleep(2)
+				browser.save_screenshot("ss.png")
+				context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.UPLOAD_PHOTO)
+				mid2 = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'), timeout = 120).message_id
+				os.remove('ss.png')
+				time.sleep(10)
+				context.bot.delete_message(chat_id=update.message.chat_id ,message_id = mid1)
+				context.bot.delete_message(chat_id=update.message.chat_id ,message_id = mid2)
+			except:
+				context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+				context.bot.send_message(chat_id=update.message.chat_id, text="cannot send message.")
 
+		else:
+			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+			context.bot.send_message(chat_id=update.message.chat_id, text="No meeting is running to send message.")
 	else:
 		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
-		context.bot.send_message(chat_id=update.message.chat_id, text="No meeting is running to send message.")
+		context.bot.send_message(chat_id=update.message.chat_id, text="please send a valid message")
 
 def start(update,context):
 	context.bot.send_message(chat_id=update.message.chat_id,text="Use following Commands to interact with bot :\nTo join google meet - /meet Gmeetlink\n To Send messages in Gmeet - /gchat yourmessage\n To join zoom meeting - /zoom zoommeetingid password\nTo know Status of Bot - /status\nTo exit Gmeet - /exitmeet\nTo restart Bot🤖 - /restart")
