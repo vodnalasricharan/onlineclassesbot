@@ -251,7 +251,7 @@ def meet(update,context):
 		global logged_in
 		logged_in=True
 		context.bot.send_message(chat_id=update.message.chat_id,text="To exit click /exitmeet ")
-		context.bot.send_message(chat_id=update.message.chat_id,text="Please send /status for every 30 minutes😊")
+		context.bot.send_message(chat_id=update.message.chat_id,text="Please send /status to check status😉")
 		pause
 		logging.info("joined Gmeet")
 		time.sleep(3)
