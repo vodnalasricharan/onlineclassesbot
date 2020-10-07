@@ -55,7 +55,7 @@ def status(update, context):
 		mid = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'), timeout = 120).message_id
 		os.remove('ss.png')
 		logging.info("*enquired status*")
-		time.sleep(5)
+		time.sleep(10)
 		context.bot.delete_message(chat_id=update.message.chat_id ,message_id = mid)
 
 	except:
