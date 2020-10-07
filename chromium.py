@@ -290,7 +290,6 @@ def start(update,context):
 
 def main():
 	import os
-	PORT = int(os.environ.get('PORT', 8000))
 	dp.add_handler(CommandHandler("start",start))
 	dp.add_handler(CommandHandler("zoom", zoom))
 	dp.add_handler(CommandHandler("meet", meet))
@@ -298,15 +297,6 @@ def main():
 	dp.add_handler(CommandHandler("status", status))
 	dp.add_handler(CommandHandler("exitmeet", exitmeet))
 	logging.info("Bot started")
-	
-	#use below 2 lines to deploy in heroku
-# 	updater.start_webhook(listen="0.0.0.0",
-#                           port=int(PORT),
-#                           url_path=str(Config.BOT_TOKEN))
-# 	updater.bot.setWebhook('heroku app link' + str(Config.BOT_TOKEN))
-
-
-#	use below line while running in local machine
 	updater.start_polling()
 
 if __name__ == '__main__':
