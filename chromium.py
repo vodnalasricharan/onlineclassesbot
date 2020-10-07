@@ -259,8 +259,10 @@ def meet(update,context):
 
 		
 	except:
-		browser.quit()
-		context.bot.send_message(chat_id=update.message.chat_id, text="Some error occurred retry! please /restart")
+		browser.execute_script("window.open('');")
+		browser.close()
+		browser.switch_to.window(browser.window_handles[-1])
+		context.bot.send_message(chat_id=update.message.chat_id, text="Some error occurred retry!")
 		logging.info("Cannot attend Gmeet")
 
 def exitmeet(update,context):
