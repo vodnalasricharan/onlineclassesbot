@@ -1,20 +1,26 @@
 {
-	"name": "Online Classes Bot",
-  	"description": "If college can't teach you,then skip it.",
-  	"repository": "https://github.com/vodnalasricharan/onlineclassesbot",
+	"name": "Google Meet Telegram Bot",
+  	"description": "Skip Online Lectures like a pro",
+  	"repository": "https://github.com/1337w0rm/YeetMeet",
   	"keywords": ["selenium", "chromedriver", "python"],
   	"env": {
     "BOT_TOKEN": {
-    	"description": "TELEGRAM_BOT_API_TOKEN"
+    	"description": "Bot_token"
     	},
 
     "PASSWORD": {
-      "description": "MAIL_PASSWORD"
+      "description": "password of mail"
     	},
 
     "USERNAME": {
-      "description": "MAIL_ID"
-    	}
+      "description": "gmail"
+    	},
+      "TEAMSUSERNAME":{
+        "description": "teams mail"
+      },
+      "TEAMSPASSWORD":{
+        "description": "teams password"
+      }
 
   	},
 
