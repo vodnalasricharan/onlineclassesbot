@@ -462,24 +462,29 @@ def jointeams(update,context):
 	else:
 		context.bot.send_message(chat_id=update.message.chat_id, text="/loginteams first to attend class")
 def exitteams(update,context):
-	try:
-		browser.find_element_by_class_name("ts-calling-screen").click()
-		browser.find_element_by_xpath('//*[@id="teams-app-bar"]/ul/li[3]').click() #come back to homepage
-		time.sleep(3)
-		browser.find_element_by_xpath('//*[@id="hangup-button"]').click()
-		context.bot.send_message(chat_id=update.message.chat_id, text="exited your class..")
-		browser.execute_script("window.open('');")
-		browser.close()
-		browser.switch_to.window(browser.window_handles[-1])
-		browser.save_screenshot("ss.png")
-		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.UPLOAD_PHOTO)
-		mid = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'), timeout = 120).message_id
-		os.remove('ss.png')
-		time.sleep(3)
-		context.bot.delete_message(chat_id=update.message.chat_id ,message_id = mid)
-	except:
-			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
-			context.bot.send_message(chat_id=update.message.chat_id, text="Some error occured!!!retry again.")
+	global teams_in
+	if teams_in:
+		try:
+			browser.find_element_by_class_name("ts-calling-screen").click()
+			browser.find_element_by_xpath('//*[@id="teams-app-bar"]/ul/li[3]').click() #come back to homepage
+			time.sleep(3)
+			browser.find_element_by_xpath('//*[@id="hangup-button"]').click()
+			context.bot.send_message(chat_id=update.message.chat_id, text="exited your class..")
+			browser.execute_script("window.open('');")
+			browser.close()
+			browser.switch_to.window(browser.window_handles[-1])
+			browser.save_screenshot("ss.png")
+			context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.UPLOAD_PHOTO)
+			mid = context.bot.send_photo(chat_id=update.message.chat_id, photo=open('ss.png', 'rb'), timeout = 120).message_id
+			os.remove('ss.png')
+			time.sleep(3)
+			context.bot.delete_message(chat_id=update.message.chat_id ,message_id = mid)
+		except:
+				context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+				context.bot.send_message(chat_id=update.message.chat_id, text="Some error occured!!!retry again.")
+	else:
+		context.bot.send_chat_action(chat_id=update.message.chat_id, action=ChatAction.TYPING)
+		context.bot.send_message(chat_id=update.message.chat_id, text="Some error occured!!!retry again.")
 
 def main():
 	import os
