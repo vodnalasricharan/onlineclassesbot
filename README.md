@@ -10,6 +10,9 @@ Online Classes Bot is a telegram bot which can be deployed to a server, heroku o
     /zoom - Command to join Zoom Meeting
     /status - Sends screenshot of the web page
     /exitmeet - Exit Google meeting
+    /loginteams - To login to teams
+    /jointeams - To join meeting in teams
+    /exitteams - To exit meeting in teams
     /restart - Close all the opened window and restarts the script
 ## Usage
 	
@@ -27,6 +30,15 @@ Online Classes Bot is a telegram bot which can be deployed to a server, heroku o
     
     Exit the ongoing Googlemeeting
     /exitmeet
+    
+    To login Microsoft teams
+    /loginteams
+    
+    To join meeting in Microsoft teams
+    /jointeams channel_name_to_join
+    
+    Exit meeting in Teams
+    /exitteams
 
     Close all the opened window and restarts the script
     /restart
