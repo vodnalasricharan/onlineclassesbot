@@ -1,4 +1,5 @@
 
+# THIS BOT IS NOT WORKING NOW, THIS HAS SEVERAL ISSUES IN IT. I STOPPED WORKING ON THIS LONG BACK
 # ONLINE CLASSES BOT
 
 Online Classes Bot is a telegram bot which can be deployed to a server, heroku or on your local machine. It can attend your Google Meet and Zoom classes for you.
